@@ -1,14 +1,20 @@
 import React from "react";
-// import { auth } from "./firebase-config.js";
-// import { useAuthState } from "react-firebase-hooks/auth";
-import { getAuth } from "firebase/auth";
 import "./App.css";
-import { Chat } from "./Components/Chat.jsx";
-import SignIn from "./Components/SignIn.jsx";
+import Register from "./Components/Register";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Login from "./Components/Login";
 
 function App() {
-  let { currentUser } = getAuth();
-  return <>{currentUser ? <Chat /> : <SignIn />}</>;
+  return (
+    <Router>
+      <>
+        <Routes>
+          <Route exact path="/" element={<Register />} />
+          <Route exact path="/login" element={<Login />} />
+        </Routes>
+      </>
+    </Router>
+  );
 }
 
 export default App;
