@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Login = () => {
   return (
-    <main className="formContainer">
+    <main className="compContainer">
       <div className="formWrapper">
         <h1>Real Time Chat App</h1>
         <p>Login</p>
@@ -19,7 +19,7 @@ const Login = () => {
           </button>
         </form>
         <span>
-          Don't have an Account <Link to="/">Register</Link>
+          Don't have an Account <Link to="/register">Register</Link>
         </span>
       </div>
     </main>

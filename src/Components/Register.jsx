@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Register = () => {
   return (
-    <main className="formContainer">
+    <main className="compContainer">
       <div className="formWrapper">
         <h1>Real Time Chat App</h1>
         <p>Register</p>
