@@ -1,6 +1,6 @@
 import React from "react";
 
-const Sidebar = () => {
+const Sidebar = ({ user }) => {
   return (
     <div className="sideBar">
       <div className="logout">
@@ -9,8 +9,8 @@ const Sidebar = () => {
       </div>
       <div className="userWrapper">
         <div className="user logged">
-          <img src="./images/user2.jpg" alt="Hans Landa" />
-          <p className="name">Hans Landa</p>
+          <img src={user.photoURL} alt={user.displayName} />
+          <p className="name">{user.displayName}</p>
         </div>
         <div className="user">
           <img src="./images/user1.jpg" alt="Ricky Morty" />

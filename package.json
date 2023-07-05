@@ -13,10 +13,7 @@
     "firebase": "^9.23.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-<<<<<<< HEAD
     "react-firebase-hooks": "^5.1.1",
-=======
->>>>>>> 4e448c5 (initial commit in windows)
     "react-router-dom": "^6.14.1"
   },
   "devDependencies": {
