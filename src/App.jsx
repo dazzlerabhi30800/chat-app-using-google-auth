@@ -4,6 +4,7 @@ import Register from "./Components/Register";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./Components/Login";
 import Home from "./Components/Home/Home";
+console.log("commit in windows");
 
 function App() {
   return (
