@@ -3,6 +3,15 @@
   --border-color: #f87bc1;
   --chat-background: #eee8fd;
   --chat-height: 50px;
+  --img-width: 35px;
+  --img-height: 35px;
+}
+
+.fitImg {
+  width: var(--img-width);
+  height: var(--img-height);
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .mainWrapper {
@@ -18,17 +27,32 @@
   flex: 1;
   background: var(--side-background-color);
   color: #fff;
-  padding: 1rem;
+  /* padding: 1rem; */
 }
 
 .logout {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background: #220878;
+  padding: 12px 8px;
 }
+
 .logout h1 {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
 }
+
+.loggedUser {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.loggedUser span {
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
 
 button {
   border: none;
@@ -39,30 +63,58 @@ button {
 
 .logoutBtn {
   color: black;
-  font-size: 1rem;
+  font-size: .9rem;
+  font-weight: 700;
   border: 2px solid var(--border-color);
   box-shadow: inset 0px 0px 3px rgba(0, 0, 0, 0.2);
 }
 
+/* User Search Bar */
+
+.searchUsers {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid #4e4e4e;
+  padding-bottom: 8px;
+  gap: 1rem;
+}
+
+
+.searchForm {
+  display: flex;
+}
+
+.searchForm input {
+  border: none;
+  outline: none;
+  width: 100%;
+  padding: 10px;
+  height: 100%;
+  font-size: 1rem;
+  color: #fff;
+  background: #08117a;
+}
+
+.searchForm input::placeholder {
+  color: #c7c7c7;
+}
+
+.userChat {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding: .8rem;
+}
+
+
+/* User for Chat Wrapper */
+
 .userWrapper {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
   margin: 20px 0;
 }
 
-.logged {
-  position: relative;
-}
-.logged::after {
-  position: absolute;
-  content: "";
-  left: 0;
-  bottom: -8px;
-  height: 1px;
-  width: 100%;
-  background: #ccc;
-}
 
 .user {
   display: flex;
@@ -70,14 +122,11 @@ button {
   align-items: center;
   padding: 0.8rem 1rem;
   color: #000;
-  background: rgba(255, 255, 255, 0.4);
 }
 
 .user img {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  object-fit: cover;
+  --img-height: 50px;
+  --img-width: 50px;
 }
 
 .chatWrapper {
@@ -93,17 +142,16 @@ button {
   align-items: center;
   padding: 8px 10px;
   justify-content: space-between;
-  background: linear-gradient(
-    90deg,
-    rgba(98, 105, 239, 1) 0%,
-    rgba(92, 128, 248, 1) 100%
-  );
+  background: linear-gradient(90deg,
+      rgba(98, 105, 239, 1) 0%,
+      rgba(92, 128, 248, 1) 100%);
 }
 
 .icons {
   display: flex;
   gap: 1rem;
 }
+
 .icons img {
   width: 30px;
   height: 30px;
@@ -137,9 +185,11 @@ button {
   flex-direction: column;
   gap: 1px;
 }
+
 .userInfo span {
   font-size: 0.7rem;
 }
+
 .userInfo img {
   width: 40px;
   height: 40px;
@@ -194,13 +244,16 @@ button {
   button:hover {
     cursor: pointer;
   }
+
   .user:hover {
     background: rgba(255, 255, 255, 0.6);
     cursor: pointer;
   }
+
   .sendBtn:hover {
     filter: brightness(110%);
   }
+
   label[for="file"] {
     cursor: pointer;
   }
@@ -213,9 +266,11 @@ button {
     min-height: auto;
     height: 650px;
   }
+
   .chatWrapper {
     flex: 2;
   }
+
   .send {
     gap: 1.2rem;
   }
@@ -223,5 +278,16 @@ button {
   .send img {
     width: 30px;
     height: 30px;
+  }
+}
+
+
+@media (hover:hover) {
+  .userChat {
+    cursor: pointer;
+  }
+
+  .userChat:hover {
+    background: rgba(0, 0, 0, 0.2);
   }
 }

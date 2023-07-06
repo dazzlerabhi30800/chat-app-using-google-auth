@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { auth, storage, db } from "../Firebase-Config";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
@@ -7,6 +7,7 @@ import { doc, setDoc } from "firebase/firestore";
 
 const Register = () => {
   const [err, setErr] = useState(false);
+  const navigate = useNavigate();
 
   // handle Submit
   const handleSubmit = async (e) => {
@@ -15,26 +16,20 @@ const Register = () => {
     const email = e.target[1].value;
     const password = e.target[2].value;
     const file = e.target[3].files[0];
-    console.log(file);
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
-      console.log(res);
 
       const storageRef = ref(storage, displayName);
 
-      const uploadTask = uploadBytesResumable(storageRef, file);
+      // const uploadTask = await uploadBytesResumable(storageRef, file);
 
-      uploadTask.on(
-        (error) => {
-          setErr(true);
-          console.log(error);
-        },
-        () => {
-          getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-            console.log(downloadURL);
+      await uploadBytesResumable(storageRef, file).then(() => {
+        getDownloadURL(storageRef).then(async (downloadURL) => {
+          console.log(downloadURL);
+          try {
             await updateProfile(res.user, {
               displayName,
-              photoURl: downloadURL,
+              photoURL: downloadURL,
             });
             await setDoc(doc(db, "users", res.user.uid), {
               uid: res.user.uid,
@@ -42,11 +37,16 @@ const Register = () => {
               email,
               photoURL: downloadURL,
             });
-          });
-        }
-      );
+            await setDoc(doc(db, "userChats", res.user.uid), {});
+            navigate("/");
+          } catch (error) {
+            console.log(error);
+            setErr(true);
+          }
+        });
+      });
     } catch (error) {
-      // console.log(error);
+      console.log(error);
       setErr(true);
     }
   };
