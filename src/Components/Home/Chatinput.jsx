@@ -20,6 +20,7 @@ const Chatinput = () => {
   const { data } = useContext(ChatContext);
 
   const handleSend = async () => {
+    if (text.length < 1) return;
     if (img) {
       const storageRef = ref(storage, uuid());
 
@@ -64,12 +65,17 @@ const Chatinput = () => {
     setImg(null);
   };
 
+  const sendMessageOnEnter = (e) => {
+    e.keyCode === 13 && handleSend();
+  };
+
   return (
     <div className="chatInput">
       <input
         onChange={(e) => setText(e.target.value)}
         value={text}
         type="text"
+        onKeyDown={sendMessageOnEnter}
         id="chat-input"
         placeholder="Type something..."
       />

@@ -17,6 +17,7 @@ const ChatBody = () => {
       onSub();
     };
   }, [data.chatId]);
+  // console.log(messages);
 
   const ref = useRef();
 
@@ -24,6 +25,12 @@ const ChatBody = () => {
     ref.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
+  const converToDate = (seconds, nanoseconds) => {
+    const fireBaseTime = new Date(seconds * 1000 + nanoseconds / 1000000);
+    const time = fireBaseTime.toLocaleTimeString();
+    const date = fireBaseTime.toLocaleDateString();
+    return time;
+  };
   return (
     <div className="chatBody">
       {messages?.map((msg) => (
@@ -43,7 +50,7 @@ const ChatBody = () => {
               }
               alt=""
             />
-            <span>Just Now</span>
+            <span>{converToDate(msg.date.seconds, msg.date.nanoseconds)}</span>
           </div>
           <div className="userContent">
             <span>{msg.text}</span>

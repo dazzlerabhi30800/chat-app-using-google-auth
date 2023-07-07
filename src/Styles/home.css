@@ -124,6 +124,10 @@ button {
   color: #000;
 }
 
+.active {
+  background: rgba(255, 255, 255, 0.6);
+}
+
 .user img {
   --img-height: 50px;
   --img-width: 50px;
@@ -201,6 +205,11 @@ button {
   background: #fff;
   padding: 5px;
   border-radius: 0 5px 5px 5px;
+}
+
+
+.reply .userContent span {
+  background: #f2acfb;
 }
 
 /* Chat input styling */

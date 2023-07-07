@@ -26,6 +26,7 @@ const Sidebar = () => {
 
   const { currentUser } = useContext(AuthContext);
   const { dispatch } = useContext(ChatContext);
+  const { data } = useContext(ChatContext);
 
   useEffect(() => {
     const getChats = () => {
@@ -42,6 +43,9 @@ const Sidebar = () => {
       Object.entries(chats)?.sort((a, b) => b[1].date - a[1].date)
     );
   }, [chats]);
+
+  // console.log(sortedChats);
+  // console.log(data);
 
   const handleSearch = async () => {
     const q = query(
@@ -149,7 +153,7 @@ const Sidebar = () => {
       <div className="userWrapper">
         {sortedChats.map((chat) => (
           <div
-            className="user"
+            className={`user ${chat[0] === data?.chatId ? "active" : ""}`}
             key={chat[0]}
             onClick={() => handleChatSelect(chat[1].userInfo)}
           >
