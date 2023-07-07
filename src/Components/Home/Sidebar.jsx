@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { signOut } from "firebase/auth";
 import { auth, db } from "../../Firebase-Config";
 import { AuthContext } from "../../context/AuthContext";
@@ -12,14 +12,36 @@ import {
   doc,
   serverTimestamp,
   getDoc,
+  onSnapshot,
 } from "firebase/firestore";
+import { ChatContext } from "../../context/ChatContext";
 
 const Sidebar = () => {
   const [username, setUsername] = useState("");
   const [user, setUser] = useState(null);
   const [err, setErr] = useState("");
+  const [chats, setChats] = useState([]);
+
+  const [sortedChats, setSortedChats] = useState([]);
 
   const { currentUser } = useContext(AuthContext);
+  const { dispatch } = useContext(ChatContext);
+
+  useEffect(() => {
+    const getChats = () => {
+      const unsub = onSnapshot(doc(db, "userChats", currentUser.uid), (doc) => {
+        setChats(doc.data());
+      });
+    };
+
+    currentUser.uid && getChats();
+  }, [currentUser.uid]);
+
+  useEffect(() => {
+    setSortedChats(
+      Object.entries(chats)?.sort((a, b) => b[1].date - a[1].date)
+    );
+  }, [chats]);
 
   const handleSearch = async () => {
     const q = query(
@@ -49,7 +71,6 @@ const Sidebar = () => {
         : user.uid + currentUser.uid;
     try {
       const res = await getDoc(doc(db, "chats", combinedId));
-      console.log(res);
       if (!res.exists()) {
         // create a chat in chats collection
         await setDoc(doc(db, "chats", combinedId), { messages: [] });
@@ -78,6 +99,10 @@ const Sidebar = () => {
     }
     setUser(null);
     setUsername("");
+  };
+
+  const handleChatSelect = (userInfo) => {
+    dispatch({ type: "CHANGE_USER", payload: userInfo });
   };
   return (
     <div className="sideBar">
@@ -122,18 +147,21 @@ const Sidebar = () => {
 
       {/* Chat User Wrapper */}
       <div className="userWrapper">
-        <div className="user">
-          <img className="fitImg" src="./images/user2.jpg" alt="hans landa" />
-          <p className="name">Hans Landa</p>
-        </div>
-        <div className="user">
-          <img className="fitImg" src="./images/user1.jpg" alt="Ricky Morty" />
-          <p className="name">Ricky Morty</p>
-        </div>
-        <div className="user">
-          <img className="fitImg" src="./images/user3.jpg" alt="Cindrella" />
-          <p className="name">Cindrella</p>
-        </div>
+        {sortedChats.map((chat) => (
+          <div
+            className="user"
+            key={chat[0]}
+            onClick={() => handleChatSelect(chat[1].userInfo)}
+          >
+            <img
+              className="fitImg"
+              src={chat[1].userInfo.photoURL}
+              alt={chat[1].userInfo.displayName}
+            />
+            <p className="name">{chat[1].userInfo.displayName}</p>
+            <span className="lastMessage">{chat[1].lastMessage?.text}</span>
+          </div>
+        ))}
       </div>
     </div>
   );
