@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../../context/AuthContext";
 import { signOut } from "firebase/auth";
+import { auth } from "../../../Firebase-Config";
 
 export const SideBarLogout = () => {
   const { currentUser } = useContext(AuthContext);

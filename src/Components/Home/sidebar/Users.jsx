@@ -21,8 +21,10 @@ export const Users = ({ sortedChats }) => {
             src={chat[1].userInfo.photoURL}
             alt={chat[1].userInfo.displayName}
           />
-          <p className="name">{chat[1].userInfo.displayName}</p>
-          <span className="lastMessage">{chat[1].lastMessage?.text}</span>
+          <div className="userText">
+            <p className="name">{chat[1].userInfo.displayName}</p>
+            <span className="lastMessage">{chat[1].lastMessage?.text}</span>
+          </div>
         </div>
       ))}
     </div>

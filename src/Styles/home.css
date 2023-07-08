@@ -1,10 +1,12 @@
 :root {
-  --side-background-color: #787af3;
+  --side-background-color: radial-gradient(circle, rgba(116, 29, 203, 0.769), rgba(9, 3, 3, 0.923));
   --border-color: #f87bc1;
-  --chat-background: #eee8fd;
+  --chat-background: #e3dcf6;
   --chat-height: 50px;
   --img-width: 35px;
   --img-height: 35px;
+  --user-active-bg: rgba(194, 24, 24, 0.402);
+  --logout-bg: #171146;
 }
 
 .fitImg {
@@ -34,7 +36,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #220878;
+  background: var(--logout-bg);
   padding: 12px 8px;
 }
 
@@ -92,7 +94,7 @@ button {
   height: 100%;
   font-size: 1rem;
   color: #fff;
-  background: #08117a;
+  background: #424244;
 }
 
 .searchForm input::placeholder {
@@ -105,6 +107,7 @@ button {
   align-items: center;
   padding: .8rem;
 }
+
 
 
 /* User for Chat Wrapper */
@@ -121,12 +124,9 @@ button {
   gap: 1rem;
   align-items: center;
   padding: 0.8rem 1rem;
-  color: #000;
+  color: #f6f6f6;
 }
 
-.active {
-  background: rgba(255, 255, 255, 0.6);
-}
 
 .user img {
   --img-height: 50px;
@@ -138,6 +138,29 @@ button {
   background: var(--chat-background);
   height: 100%;
 }
+
+
+.active {
+  background: var(--user-active-bg);
+}
+
+.userText {
+  display: flex;
+  flex-direction: column;
+  gap: 0rem;
+}
+
+.userText p {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.userText span {
+  font-size: .8rem;
+}
+
+
+/* Chat Styling */
 
 .chatHeaderWrapper {
   display: flex;
@@ -175,7 +198,7 @@ button {
 .userContainer {
   display: flex;
   flex-direction: row-reverse;
-  align-items: center;
+  align-items: flex-start;
   padding: 10px;
   gap: 1rem;
 }
@@ -201,6 +224,12 @@ button {
   object-fit: cover;
 }
 
+.userContent {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
 .userContent span {
   background: #fff;
   padding: 5px;
@@ -209,7 +238,14 @@ button {
 
 
 .reply .userContent span {
-  background: #f2acfb;
+  background: #f79cf7;
+}
+
+.sendImg {
+  width: 180px;
+  height: 180px;
+  border-radius: 5px;
+  object-fit: cover;
 }
 
 /* Chat input styling */
@@ -255,7 +291,7 @@ button {
   }
 
   .user:hover {
-    background: rgba(255, 255, 255, 0.6);
+    background: var(--user-active-bg);
     cursor: pointer;
   }
 

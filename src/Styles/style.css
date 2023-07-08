@@ -2,7 +2,7 @@
 @import "./home.css";
 
 :root {
-  --background-color: linear-gradient(to right, #130738, #240441);
+  --background-color: radial-gradient(circle, #2f0232, #010115);
   --upload-button-color: #7d7bf9;
   --upload-hover-color: #f97bb8;
   --font-Roboto: "Roboto", sans-serif;
@@ -24,10 +24,10 @@ body {
   display: flex;
   padding: 1rem;
   flex-direction: column;
-  background: #ded9ff;
-  gap: 0.6rem;
-  border-radius: 5px;
-  box-shadow: 1px 1px 30px 2px #3932f14c;
+  background: #1a023e;
+  color: #fff;
+  gap: 1rem;
+  box-shadow: 6px 6px 0px 0px #60f3bf;
   width: clamp(300px, 90%, 410px);
 }
 
@@ -42,7 +42,7 @@ body {
 form {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 2rem;
   margin: 10px 0;
 }
 
@@ -51,7 +51,13 @@ form input {
   outline: none;
   font-size: 0.8rem;
   padding: 8px;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #d8f796;
+  background: transparent;
+  color: #fff;
+}
+
+form input::placeholder {
+  color: #b4b2b2;
 }
 
 form input[type="file"] {
@@ -74,8 +80,8 @@ button[type="submit"] {
   font-size: 1.1rem;
   border-radius: 2px;
   background: linear-gradient(90deg,
-      rgba(239, 169, 245, 1) 0%,
-      rgba(169, 179, 245, 1) 100%);
+      rgb(245, 183, 169) 0%,
+      rgb(206, 245, 169) 100%);
 }
 
 span {
@@ -87,6 +93,7 @@ span>a {
   text-decoration: none;
   font-weight: 500;
   font-size: 1rem;
+  color: cyan;
 }
 
 /* Chat Input */

@@ -24,15 +24,20 @@ export const SearchUser = ({ setUsername, username }) => {
       collection(db, "users"),
       where("displayName", "==", username)
     );
+    let searchUser;
     try {
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
         setUser(doc.data());
+        searchUser = doc.data();
       });
+      searchUser ? "" : alert("user not found");
     } catch (error) {
       console.log(error);
       setErr(true);
     }
+
+    searchUser = null;
   };
 
   const handleKeyDown = (e) => {

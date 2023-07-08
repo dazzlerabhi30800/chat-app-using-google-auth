@@ -17,7 +17,6 @@ const ChatBody = () => {
       onSub();
     };
   }, [data.chatId]);
-  // console.log(messages);
 
   const ref = useRef();
 
@@ -54,6 +53,9 @@ const ChatBody = () => {
           </div>
           <div className="userContent">
             <span>{msg.text}</span>
+            {msg.img && (
+              <img src={msg.img} className="sendImg" alt={msg.text} />
+            )}
           </div>
         </div>
       ))}
