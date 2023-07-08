@@ -2,7 +2,7 @@
 @import "./home.css";
 
 :root {
-  --background-color: #e1d4fc;
+  --background-color: linear-gradient(to right, #130738, #240441);
   --upload-button-color: #7d7bf9;
   --upload-hover-color: #f97bb8;
   --font-Roboto: "Roboto", sans-serif;
@@ -17,24 +17,25 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: var(--background-color);
+  background: var(--background-color);
 }
 
 .formWrapper {
   display: flex;
   padding: 1rem;
   flex-direction: column;
-  background: #fff;
+  background: #ded9ff;
   gap: 0.6rem;
   border-radius: 5px;
+  box-shadow: 1px 1px 30px 2px #3932f14c;
   width: clamp(300px, 90%, 410px);
 }
 
-.formWrapper > h1 {
+.formWrapper>h1 {
   font-size: 1.4rem;
 }
 
-.formWrapper > p {
+.formWrapper>p {
   font-size: 0.9rem;
 }
 
@@ -72,18 +73,17 @@ button[type="submit"] {
   outline: none;
   font-size: 1.1rem;
   border-radius: 2px;
-  background: linear-gradient(
-    90deg,
-    rgba(239, 169, 245, 1) 0%,
-    rgba(169, 179, 245, 1) 100%
-  );
+  background: linear-gradient(90deg,
+      rgba(239, 169, 245, 1) 0%,
+      rgba(169, 179, 245, 1) 100%);
 }
 
 span {
   margin: 5px auto;
   font-size: 0.9rem;
 }
-span > a {
+
+span>a {
   text-decoration: none;
   font-weight: 500;
   font-size: 1rem;
@@ -99,14 +99,17 @@ span > a {
   form label[for="fileUpload"]:hover {
     color: var(--upload-hover-color);
   }
+
   button {
     cursor: pointer;
     transition: 0.3s ease;
   }
+
   button[type="submit"]:hover {
     filter: brightness(110%);
   }
-  span > a:hover {
+
+  span>a:hover {
     color: #f8489d;
     text-decoration: underline;
   }

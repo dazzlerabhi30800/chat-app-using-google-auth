@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
-import { AuthContext } from "../../context/AuthContext";
-import { ChatContext } from "../../context/ChatContext";
+import { AuthContext } from "../../../context/AuthContext";
+import { ChatContext } from "../../../context/ChatContext";
 import {
   arrayUnion,
   Timestamp,
@@ -8,7 +8,7 @@ import {
   updateDoc,
   serverTimestamp,
 } from "firebase/firestore";
-import { db, storage } from "../../Firebase-Config";
+import { db, storage } from "../../../Firebase-Config";
 import { v4 as uuid } from "uuid";
 import { uploadBytesResumable, ref, getDownloadURL } from "firebase/storage";
 
