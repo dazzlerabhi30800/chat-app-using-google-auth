@@ -10,9 +10,11 @@ export const Users = ({ sortedChats }) => {
   };
   return (
     <div className="userWrapper">
-      {sortedChats.map((chat) => (
+      {sortedChats.map((chat, index) => (
         <div
-          className={`user ${chat[0] === data?.chatId ? "active" : ""}`}
+          className={`user ${chat[0] === data?.chatId ? "active" : ""} ${
+            index === 0 && "first"
+          }`}
           key={chat[0]}
           onClick={() => handleChatSelect(chat[1].userInfo)}
         >
@@ -25,6 +27,7 @@ export const Users = ({ sortedChats }) => {
             <p className="name">{chat[1].userInfo.displayName}</p>
             <span className="lastMessage">{chat[1].lastMessage?.text}</span>
           </div>
+          <div className="activeDot"></div>
         </div>
       ))}
     </div>

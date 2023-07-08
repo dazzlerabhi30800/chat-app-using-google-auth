@@ -2,7 +2,7 @@
 @import "./home.css";
 
 :root {
-  --background-color: radial-gradient(circle, #2f0232, #010115);
+  --background-color: radial-gradient(circle, #14214a, #010115);
   --upload-button-color: #7d7bf9;
   --upload-hover-color: #f97bb8;
   --font-Roboto: "Roboto", sans-serif;
@@ -24,10 +24,10 @@ body {
   display: flex;
   padding: 1rem;
   flex-direction: column;
-  background: #1a023e;
+  background: #0e0232;
   color: #fff;
   gap: 1rem;
-  box-shadow: 6px 6px 0px 0px #60f3bf;
+  box-shadow: 6px 6px 0px 0px #60f3c0f3;
   width: clamp(300px, 90%, 410px);
 }
 
@@ -80,8 +80,8 @@ button[type="submit"] {
   font-size: 1.1rem;
   border-radius: 2px;
   background: linear-gradient(90deg,
-      rgb(245, 183, 169) 0%,
-      rgb(206, 245, 169) 100%);
+      #94f875 0%,
+      #70f4b4 100%);
 }
 
 span {
