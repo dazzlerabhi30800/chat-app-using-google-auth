@@ -1,5 +1,11 @@
 @import "./Styles/style.css";
 
+
+@font-face {
+  font-family: 'Bill Smith', sans-serif;
+  src: url('/public/bill-smith/Bill\ Smith\ Demo.ttf');
+}
+
 * {
   margin: 0;
   padding: 0;

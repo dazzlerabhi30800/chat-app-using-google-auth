@@ -41,7 +41,8 @@
 }
 
 .logout h1 {
-  font-size: 1.4rem;
+  font-size: .8rem;
+  font-family: 'Bill Smith';
 }
 
 .loggedUser {

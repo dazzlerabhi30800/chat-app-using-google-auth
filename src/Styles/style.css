@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
 @import "./home.css";
 
 :root {
@@ -32,11 +33,15 @@ body {
 }
 
 .formWrapper>h1 {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
+  font-family: "Montserrat", sans-serif;
+  color: #edf6f0;
 }
 
 .formWrapper>p {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
+  color: #d9f1b1;
+  font-family: "Bill Smith";
 }
 
 form {
