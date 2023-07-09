@@ -10,7 +10,13 @@ import {
 } from "firebase/firestore";
 import { db, storage } from "../../../Firebase-Config";
 import { v4 as uuid } from "uuid";
-import { uploadBytesResumable, ref, getDownloadURL } from "firebase/storage";
+import {
+  uploadBytesResumable,
+  ref,
+  getDownloadURL,
+  uploadString,
+} from "firebase/storage";
+import Resizer from "react-image-file-resizer";
 
 const Chatinput = () => {
   const [text, setText] = useState("");
@@ -19,24 +25,34 @@ const Chatinput = () => {
   const { currentUser } = useContext(AuthContext);
   const { data } = useContext(ChatContext);
 
+  const imageResizer = (file) =>
+    new Promise((resolve) => {
+      Resizer.imageFileResizer(file, 400, 400, "PNG", 100, 0, (uri) => {
+        resolve(uri);
+      });
+    });
+
   const handleSend = async () => {
     if (text.length < 1) return;
     if (img) {
+      let uri = await imageResizer(img);
       const storageRef = ref(storage, uuid());
 
-      await uploadBytesResumable(storageRef, img).then(() => {
-        getDownloadURL(storageRef).then(async (downloadURL) => {
-          await updateDoc(doc(db, "chats", data.chatId), {
-            messages: arrayUnion({
-              id: uuid(),
-              text,
-              senderId: currentUser.uid,
-              date: Timestamp.now(),
-              img: downloadURL,
-            }),
-          });
+      const thumbsnapshot = await uploadString(storageRef, uri, "data_url");
+
+      // await uploadBytesResumable(storageRef, img).then(() => {
+      getDownloadURL(thumbsnapshot.ref).then(async (downloadURL) => {
+        await updateDoc(doc(db, "chats", data.chatId), {
+          messages: arrayUnion({
+            id: uuid(),
+            text,
+            senderId: currentUser.uid,
+            date: Timestamp.now(),
+            img: downloadURL,
+          }),
         });
       });
+      // });
     } else {
       await updateDoc(doc(db, "chats", data.chatId), {
         messages: arrayUnion({
